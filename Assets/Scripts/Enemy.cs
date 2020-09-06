@@ -2,8 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public interface IKillable 
 {
+    void Kill(GameObject obj);
+}
+
+public class Enemy : MonoBehaviour, IKillable
+{
+    [SerializeField]
+    private GameObject player;
+
     [SerializeField]
     private int steps;
     private int maxSteps;
@@ -16,18 +24,20 @@ public class Enemy : MonoBehaviour
     private float verticalStep;
 
     [SerializeField]
-    private Sprite[] _sprites;
-    private int _currentSprite = 0;
-    private int _maxSprites;
+    private Sprite[] sprites;
+    private int currentSprite = 0;
+    private int maxSprites;
 
 
     [SerializeField]
     private float timer = 1f;
     private float nextTime;
 
+    
+
     private void Start()
     {
-        _maxSprites = _sprites.Length - 1;
+        maxSprites = sprites.Length - 1;
         maxSteps = steps * 2;
     }
 
@@ -42,25 +52,32 @@ public class Enemy : MonoBehaviour
         {
             nextTime += actionTime;
 
-            GetComponent<SpriteRenderer>().sprite = _sprites[_currentSprite];
+            player.GetComponent<SpriteRenderer>().sprite = sprites[currentSprite];
 
-            if (_currentSprite != _maxSprites)
-                _currentSprite += 1;
+            
+
+            if (currentSprite != maxSprites)
+                currentSprite += 1;
             else
-                _currentSprite = 0;
+                currentSprite = 0;
             
             if (currentStep < steps)
             {
-                transform.position += new Vector3(horizontalStep * directionInt, 0, 0);
+                player.transform.position += new Vector3(horizontalStep * directionInt, 0, 0);
                 currentStep++;
             }
             else
             {
-                transform.position += new Vector3(0, -verticalStep, 0);
+                player.transform.position += new Vector3(0, -verticalStep, 0);
                 directionInt *= -1;
                 steps = maxSteps;
                 currentStep = 0;
             }
         }
+    }
+
+    public void Kill(GameObject obj)
+    {
+        Destroy(obj);
     }
 }

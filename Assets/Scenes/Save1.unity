@@ -154,6 +154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 2
+  maxPosRight: 5
+  maxPosLeft: -5
+  Player: {fileID: 123272107}
 --- !u!212 &123272110
 SpriteRenderer:
   m_ObjectHideFlags: 0
