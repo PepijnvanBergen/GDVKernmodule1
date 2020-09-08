@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &325132461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 325132462}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &325132462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325132461}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +206,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.405995
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -236,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25959968e7ce8b45ad33e4169cc02f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 2
+  MoveSpeed: 6
   maxPosRight: 5
   maxPosLeft: -5
   Player: {fileID: 590247733}
@@ -299,7 +329,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590247733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.023743, y: -4.54, z: 0}
+  m_LocalPosition: {x: -0.023743, y: -4, z: 0}
   m_LocalScale: {x: 9.97552, y: 9.97552, z: 9.97552}
   m_Children: []
   m_Father: {fileID: 0}
@@ -386,12 +416,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8911b114834a843a4c59e3548071f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 590247733}
   steps: 5
   horizontalStep: 0.2
   verticalStep: 0.5
-  _sprites:
-  - {fileID: 21300000, guid: 514245ab2144258459a1948cf0a7f749, type: 3}
-  - {fileID: 21300000, guid: 9165fdd12beaaa143befe4e5e525d0b9, type: 3}
+  sprites: []
   timer: 1
 --- !u!4 &596653126
 Transform:
