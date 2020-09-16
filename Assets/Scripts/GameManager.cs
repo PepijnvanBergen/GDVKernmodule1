@@ -11,11 +11,26 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject bullet_prefab;
     [SerializeField] public GameObject enemy_prefab;
 
+    private Vector3 PlayerPos = new Vector3(0, -4, 0);
+
     public float range;
+    public float firerate;
+
+    private bool Cooldown = false;
+    IEnumerator FireRateCooldown()
+    {
+        yield return new WaitForSeconds(firerate);
+        Cooldown = false;
+    }
     public void SpawnBullet()
     {
-        GameObject Bbullet = Instantiate(bullet_prefab, new Vector3(0,-4,0), Quaternion.identity);
-        Bullets.Add(Bbullet);
+        if (Cooldown == false)
+        {
+            Cooldown = true;
+            GameObject Bbullet = Instantiate(bullet_prefab, PlayerPos, Quaternion.identity);
+            Bullets.Add(Bbullet);
+            StartCoroutine("FireRateCooldown");
+        }
     }
 
     // Start is called before the first frame update
@@ -43,7 +58,7 @@ public class GameManager : MonoBehaviour
             Vector3 BulletPos = Bullets[i].transform.position;
             for (int y = 0; y < Enemies.Count; y++)
             {
-                Vector3 EnemyPos = Enemies[i].transform.position;
+                Vector3 EnemyPos = Enemies[y].transform.position;
                 Vector3 Offset = BulletPos - EnemyPos;
                 float sqrLen = Offset.sqrMagnitude;
 
@@ -56,7 +71,14 @@ public class GameManager : MonoBehaviour
                     GameObject HitBullet = Bullets[i];
                     Bullets.Remove(HitBullet);
                     Destroy(HitBullet);
+                    //Or let the Enemy Take Damage so he can survive multiple Hits ;)
                 }
+            }
+            if (BulletPos.y > 5)
+            {
+                GameObject HitBullet = Bullets[i];
+                Bullets.Remove(HitBullet);
+                Destroy(HitBullet);
             }
         }
     }
