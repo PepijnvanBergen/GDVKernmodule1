@@ -6,7 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public delegate void MyDelegate();
     public static MyDelegate Bullets;
-    
+
+    StateMachine MyFSM = new StateMachine();
+    InputManager MyIM = new InputManager();
+
     public void SpawnBullet()
     {
         Debug.Log("Spawn Bullet");
@@ -15,7 +18,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        MyFSM.ChangeState(new MoveState());
     }
 
     // Update is called once per frame
@@ -25,5 +28,7 @@ public class GameManager : MonoBehaviour
         {
             SpawnBullet();
         }
+        MyFSM.RunState();
+        MyIM.InputUpdate();
     }
 }

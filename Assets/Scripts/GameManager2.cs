@@ -11,6 +11,7 @@ public class GameManager2 : MonoBehaviour
         ON_ENEMY_DEATH = 2,
         ON_ALL_ENEMY_DEATH = 3,
         ON_WIPE_COMPLETE = 4,
+        ON_PLAYER_SHOOT = 5
 
     }
 
