@@ -33,25 +33,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameObject Eenemy = Instantiate(enemy_prefab, new Vector3(0, 4, 0), Quaternion.identity);
-        Enemies.Add(Eenemy);
-    }
-
-    // Update is called once per frame
-    void Update()
+    public void Shoot()
     {
         if (Input.GetKeyDown("space"))
         {
             SpawnBullet();
         }
+    }
+
+    public void MoveBullets()
+    {
         //Move all Bullets
         for (int i = 0; i < Bullets.Count; i++)
         {
             Bullets[i].transform.position = Bullets[i].transform.position + new Vector3(0, .01f, 0);
         }
+    }
+
+    public void HandleCollision()
+    {
         //Check Epic "Collision"
         for (int i = 0; i < Bullets.Count; i++)
         {
@@ -81,5 +81,20 @@ public class GameManager : MonoBehaviour
                 Destroy(HitBullet);
             }
         }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        GameObject Eenemy = Instantiate(enemy_prefab, new Vector3(0, 4, 0), Quaternion.identity);
+        Enemies.Add(Eenemy);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Shoot();
+        MoveBullets();
+        HandleCollision();
     }
 }
