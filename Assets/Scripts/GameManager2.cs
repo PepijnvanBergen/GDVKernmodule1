@@ -6,8 +6,12 @@ public class GameManager2 : MonoBehaviour
 {
     public enum EventEnum
     {
-        ON_GAME_START = 0,
-        ON_GAME_EXIT = 1
+        ON_SETUP_COMPLETE = 0,
+        ON_PLAYER_DEATH = 1,
+        ON_ENEMY_DEATH = 2,
+        ON_ALL_ENEMY_DEATH = 3,
+        ON_WIPE_COMPLETE = 4,
+
     }
 
     //De Dictionary waar je al je events in opslaat.
