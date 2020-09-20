@@ -37,7 +37,4 @@ public class Bullet : IDamageable, IConstantmove
         Health -= dmg;
     }
 
-    //Cant add it to the Delegate :c ?
-    //Bullets += GivePositionX;
-    //Bullets += GivePositionY;
 }
