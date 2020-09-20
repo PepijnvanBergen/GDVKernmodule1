@@ -34,20 +34,24 @@ public class Test : MonoBehaviour
     void Start()
     {
         _spawnEnemies = new SpawnEnemies(enemy, _rowAmount, _enemiesInRow, _rowLocationX, _rowLocationY, _nextRowLocationX, _nextEnemyPosY);
+        _enemy = new Enemy();
+
+        StartCoroutine(EnemyWalk());
     }
 
-    private void Update()
+    private IEnumerator EnemyWalk()
     {
-        //WERKT NIET :(
-        //Debug.Log(enemies.Count);
-        //for (int i = 0; i < enemies.Count; i++)
-        //{
-        //    _enemy.Walk(1, enemies[i]);
-        //}
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
 
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    Destroy(enemies[0]);
-        //}
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                Debug.Log(i);
+                _enemy.Walk(enemies[i]);
+            }
+
+            _enemy.currentStep++;
+        }
     }
 }
