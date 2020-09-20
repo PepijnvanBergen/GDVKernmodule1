@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
-{
-    public delegate void MyDelegate();
-    public static MyDelegate Bullets;
-    
+{   
     List<GameObject> Bullets = new List<GameObject>();
     List<GameObject> Enemies = new List<GameObject>();
 
