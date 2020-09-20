@@ -386,10 +386,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8911b114834a843a4c59e3548071f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 596653123}
   steps: 5
   horizontalStep: 0.2
   verticalStep: 0.5
-  _sprites:
+  sprites:
   - {fileID: 21300000, guid: 514245ab2144258459a1948cf0a7f749, type: 3}
   - {fileID: 21300000, guid: 9165fdd12beaaa143befe4e5e525d0b9, type: 3}
   timer: 1
