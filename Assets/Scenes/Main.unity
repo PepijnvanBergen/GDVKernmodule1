@@ -246,7 +246,6 @@ GameObject:
   m_Component:
   - component: {fileID: 590247736}
   - component: {fileID: 590247735}
-  - component: {fileID: 590247734}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -254,22 +253,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &590247734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 590247733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f25959968e7ce8b45ad33e4169cc02f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 6
-  maxPosRight: 5
-  maxPosLeft: -5
-  Player: {fileID: 590247733}
 --- !u!212 &590247735
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -411,7 +394,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596653123}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b8911b114834a843a4c59e3548071f6, type: 3}
   m_Name: 

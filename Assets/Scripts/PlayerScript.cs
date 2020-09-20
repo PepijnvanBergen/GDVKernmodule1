@@ -11,6 +11,7 @@ public interface IPlayer
 
 public class PlayerScript : IPlayer, IKillable
 {
+    GameManager2 GM2 = new GameManager2();
     InputManager MyIM = new InputManager();
     //Maximale afstand links = '-5' maximale afstand rechts = '5.'
     //Als de camera een grote heeft van '4.405995'
@@ -31,6 +32,10 @@ public class PlayerScript : IPlayer, IKillable
 
     public GameObject Player;
 
+    public PlayerScript()
+    {
+        GameObject Player = GameObject.Instantiate(GM2.PlayerPrefab, new Vector3(1f, 1f), Quaternion.identity);
+    }
     public void Move()
     {
         Calculate(_moveSpeed);
