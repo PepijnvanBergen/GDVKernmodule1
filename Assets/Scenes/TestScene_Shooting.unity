@@ -235,6 +235,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c82efcb5fca854bb894243eec9fdbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet_prefab: {fileID: 7363458883994772388, guid: 54b0fa58bf21b6943ba62f07c8bc11e6, type: 3}
+  enemy_prefab: {fileID: 1140879793398904349, guid: 29b64b58bc1fb0a48ace8ad03070feee, type: 3}
+  range: 1
+  firerate: 0.5
 --- !u!4 &1026876569
 Transform:
   m_ObjectHideFlags: 0

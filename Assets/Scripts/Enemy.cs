@@ -7,77 +7,46 @@ public interface IKillable
     void Kill(GameObject obj);
 }
 
-public class Enemy : MonoBehaviour, IKillable
+public class Enemy : IKillable
 {
-    [SerializeField]
-    private GameObject player;
+    private int _steps = 5;
+    private int _maxSteps;
+    private int _currentStep = 0;
+    private int _directionInt = 1;
 
     [SerializeField]
-    private int steps;
-    private int maxSteps;
-    private int currentStep = 0;
-    private int directionInt = 1;
-
+    private float _horizontalStep = 2;
     [SerializeField]
-    private float horizontalStep;
-    [SerializeField]
-    private float verticalStep;
+    private float _verticalStep = 5;
 
-    [SerializeField]
-    private Sprite[] sprites;
-    private int currentSprite = 0;
-    private int maxSprites;
+    private float _timer = 1f;
+    private float _nextTime;
 
-
-    [SerializeField]
-    private float timer = 1f;
-    private float nextTime;
-
-    
-
-    private void Start()
+    public void Walk(float actionTime, GameObject enemy)
     {
-        maxSprites = sprites.Length - 1;
-        maxSteps = steps * 2;
-    }
+        _maxSteps = _steps * 2;
 
-    private void Update()
-    {
-        Walk(timer);
-    }
-
-    void Walk(float actionTime)
-    {
-        if(Time.time >= nextTime)
+        if (Time.time >= _nextTime)
         {
-            nextTime += actionTime;
-
-            player.GetComponent<SpriteRenderer>().sprite = sprites[currentSprite];
-
+            _nextTime += actionTime;
             
-
-            if (currentSprite != maxSprites)
-                currentSprite += 1;
-            else
-                currentSprite = 0;
-            
-            if (currentStep < steps)
+            if (_currentStep < _steps)
             {
-                player.transform.position += new Vector3(horizontalStep * directionInt, 0, 0);
-                currentStep++;
+                enemy.transform.position += new Vector3(_horizontalStep * _directionInt, 0, 0);
+                _currentStep++;
             }
             else
             {
-                player.transform.position += new Vector3(0, -verticalStep, 0);
-                directionInt *= -1;
-                steps = maxSteps;
-                currentStep = 0;
+                enemy.transform.position += new Vector3(0, -_verticalStep, 0);
+                _directionInt *= -1;
+                _steps = _maxSteps;
+                _currentStep = 0;
             }
         }
     }
 
     public void Kill(GameObject obj)
     {
-        Destroy(obj);
+        Object.Destroy(obj);
     }
 }
