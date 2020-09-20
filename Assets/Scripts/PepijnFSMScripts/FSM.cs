@@ -1,71 +1,69 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
-
-public class fsm : MonoBehaviour
-{
-}
-
 public interface IState
 {
     void Enter();
     void Execute();
     void Exit();
 }
- 
+
 public class StateMachine
 {
     IState currentState;
- 
-    public void ChangeState(IState newState)
+    //public static Dictionary<EventEnum, System.Action> stateMachineDic = new Dictionary<EventEnum, System.Action>();
+    public void RunState()
+    {
+        //Een referentie naar deze funtie zetten in de gamemanager zodat het werkt.
+        if (currentState != null) currentState.Execute();
+    }
+
+    public void ChangeState(IState _newState)
     {
         if (currentState != null)
+        {
             currentState.Exit();
- 
-        currentState = newState;
+        }
+
+        currentState = _newState;
         currentState.Enter();
-    }
- 
-    public void Update()
-    {
-        if (currentState != null) currentState.Execute();
     }
 }
 
-public class TestState : IState
+public class FirstState : IState
 {
-    Unit owner;
-
-    public TestState(Unit owner) { this.owner = owner; }
-
+    StateMachine MyFSM = new StateMachine();
     public void Enter()
     {
-        Debug.Log("entering test state");
+        Debug.Log("entering state");
     }
 
     public void Execute()
     {
-        Debug.Log("updating test state");
+        Debug.Log("execute state");
+        MyFSM.ChangeState(new SecondState());
     }
 
     public void Exit()
     {
-        Debug.Log("exiting test state");
+        Debug.Log("exiting state");
     }
 }
- 
-public class Unit : MonoBehaviour
+
+public class SecondState : IState
 {
-    StateMachine stateMachine = new StateMachine();
-   
-    void Start()
+    public void Enter()
     {
-        stateMachine.ChangeState(new TestState(this));
+        Debug.Log("entering state");
     }
- 
-    void Update()
+
+    public void Execute()
     {
-        stateMachine.Update();
+        Debug.Log("execute state");
+    }
+
+    public void Exit()
+    {
+        Debug.Log("exiting state");
     }
 }
