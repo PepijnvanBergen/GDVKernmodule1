@@ -14,12 +14,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Enemy")]
     public GameObject enemy;
-
-    // Start is called before the first frame update
-    private void Awake()
-    {
-        //MyPS = GetComponent < PlayerScript>();
-    }
     void Start()
     {
         StateMachine.ChangeState(new SpawnState());

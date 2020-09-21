@@ -14,37 +14,25 @@ public class Bullet
     public float range = 0.9f;
     public float firerate = 0.5f;
 
-    private bool _cooldown = false;
     GameObject _player;
-    //private PlayerScript _MyPS = new PlayerScript();
 
     public Bullet(GameObject _enemy, GameObject _bullet, PlayerScript _MyPS)
     {
         _player = _MyPS._PlayerPrefab;
         _enemyPrefab = _enemy;
         _bulletPrefab = _bullet;
-        //GameObject Eenemy = GameObject.Instantiate(_enemyPrefab, new Vector3(0, 4, 0), Quaternion.identity);
-        //Enemies.Add(Eenemy);
     }
 
     public void BulletUpdate()
     {
-        //_PlayerPos = _player.transform.position;
-        //_PlayerPos = _MyPS.
-        //_PlayerPos = PlayerScript.PlayerPos;
-
         MoveBullets();
         HandleCollision();
     }
     public void SpawnBullet()
     {
-        if (_cooldown == false)
-        {
-            //Cooldown = true;
             GameObject Bbullet = GameObject.Instantiate(_bulletPrefab, PlayerScript.playerPos, Quaternion.identity);
             Bullets.Add(Bbullet);
 
-        }
     }
     public void MoveBullets()
     {

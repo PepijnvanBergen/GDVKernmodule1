@@ -12,9 +12,6 @@ public interface IPlayer
 
 public class PlayerScript : IPlayer, IKillable
 {
-    //Maximale afstand links = '-5' maximale afstand rechts = '5.'
-    //Als de camera een grote heeft van '4.405995'
-
     private float _maxPosRight = 5f;
     private float _maxPosLeft = -5f;
 
@@ -22,7 +19,6 @@ public class PlayerScript : IPlayer, IKillable
     public static Vector3 playerPos;
 
     public GameObject _PlayerPrefab;
-    //public Vector3 PlayerPos = new Vector3(3,0,0);
 
     public void PlayerObject(GameObject _player)
     {
@@ -40,14 +36,10 @@ public class PlayerScript : IPlayer, IKillable
     public void Idle()
     {
         Calculate(0);
-        //Debug.Log("idle");
     }
     public void Shoot()
     {
-        //_MyB.SpawnBullet();
         Calculate(0f);
-
-        Debug.Log("Piew");
     }
     public void MoveR()
     {
@@ -80,7 +72,6 @@ public class PlayerScript : IPlayer, IKillable
         _vectorPos.x = _posX;
         _PlayerPrefab.transform.position = new Vector3(_posX, -4);
 
-        //Beweeg als de positie binnen de clamp valt.
         _PlayerPrefab.transform.Translate(_movePos * Time.deltaTime);
 
         playerPos = _PlayerPrefab.transform.position;

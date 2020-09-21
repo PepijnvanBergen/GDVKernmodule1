@@ -8,15 +8,12 @@ public interface IState
     void Exit();
 }
 
-//IPlayerState
-
 public static class StateMachine
 {
     static IState _currentState;
     //public static Dictionary<EventEnum, System.Action> stateMachineDic = new Dictionary<EventEnum, System.Action>();
     public static void RunState()
     {
-        //Een referentie naar deze funtie zetten in de gamemanager zodat het werkt.
         if (_currentState != null)
         {
             _currentState.Execute();
@@ -25,7 +22,6 @@ public static class StateMachine
 
     public static void ChangeState(IState _newState)
     {
-        Debug.Log("change state");
         if (_currentState != null)
         {
             _currentState.Exit();

@@ -25,14 +25,12 @@ public static class EventManager
             eventDictionary.Add(eventType, null);
         }
         eventDictionary[eventType] += function;
-        //Debug.Log("EventSubscribed");
     }
     public static void RemoveListener(EventEnum eventType, System.Action function)
     {
         if (eventDictionary.ContainsKey(eventType) && eventDictionary[eventType] != null)
         {
             eventDictionary[eventType] -= function;
-            //Debug.Log("EventRemoved");
         }
     }
     public static void RaiseEvent(EventEnum eventType)
@@ -40,7 +38,6 @@ public static class EventManager
         if (eventDictionary.ContainsKey(eventType) && eventDictionary[eventType] != null)
         {
             eventDictionary[eventType].Invoke();
-            //Debug.Log("EventRaised");
         }
     }
 }
