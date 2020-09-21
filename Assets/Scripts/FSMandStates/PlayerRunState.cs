@@ -45,9 +45,9 @@ public class PlayerRunLState : IState, IPlayerState
     public void Enter()
     {
         EventManager.SubscribeToEvent(EventEnum.ON_MOVER, Swap1);
-        EventManager.SubscribeToEvent(EventEnum.ON_MOVEL, Swap1);
-        EventManager.SubscribeToEvent(EventEnum.ON_RUNR, Swap1);
-        EventManager.SubscribeToEvent(EventEnum.ON_SHOOT, Swap2);
+        EventManager.SubscribeToEvent(EventEnum.ON_MOVEL, Swap2);
+        EventManager.SubscribeToEvent(EventEnum.ON_RUNR, Swap3);
+        EventManager.SubscribeToEvent(EventEnum.ON_SHOOT, Swap4);
     }
     public void Execute()
     {
@@ -72,8 +72,8 @@ public class PlayerRunLState : IState, IPlayerState
     public void Exit()
     {
         EventManager.RemoveListener(EventEnum.ON_MOVER, Swap1);
-        EventManager.RemoveListener(EventEnum.ON_MOVEL, Swap1);
-        EventManager.RemoveListener(EventEnum.ON_RUNR, Swap1);
-        EventManager.RemoveListener(EventEnum.ON_SHOOT, Swap2);
+        EventManager.RemoveListener(EventEnum.ON_MOVEL, Swap2);
+        EventManager.RemoveListener(EventEnum.ON_RUNR, Swap3);
+        EventManager.RemoveListener(EventEnum.ON_SHOOT, Swap4);
     }
 }

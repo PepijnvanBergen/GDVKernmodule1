@@ -5,9 +5,9 @@
     public void Enter()
     {
         EventManager.SubscribeToEvent(EventEnum.ON_MOVER, Swap1);
-        EventManager.SubscribeToEvent(EventEnum.ON_MOVEL, Swap1);
-        EventManager.SubscribeToEvent(EventEnum.ON_RUNR, Swap1);
-        EventManager.SubscribeToEvent(EventEnum.ON_RUNL, Swap1);
+        EventManager.SubscribeToEvent(EventEnum.ON_MOVEL, Swap2);
+        EventManager.SubscribeToEvent(EventEnum.ON_RUNR, Swap3);
+        EventManager.SubscribeToEvent(EventEnum.ON_RUNL, Swap4);
 
     }
     public void Execute()
@@ -34,8 +34,8 @@
     public void Exit()
     {
         EventManager.RemoveListener(EventEnum.ON_MOVER, Swap1);
-        EventManager.RemoveListener(EventEnum.ON_MOVEL, Swap1);
-        EventManager.RemoveListener(EventEnum.ON_RUNR, Swap1);
-        EventManager.RemoveListener(EventEnum.ON_RUNL, Swap1);
+        EventManager.RemoveListener(EventEnum.ON_MOVEL, Swap2);
+        EventManager.RemoveListener(EventEnum.ON_RUNR, Swap3);
+        EventManager.RemoveListener(EventEnum.ON_RUNL, Swap4);
     }
 }
