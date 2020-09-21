@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
-{
-    public delegate void MyDelegate();
+{   
     List<GameObject> Bullets = new List<GameObject>();
     List<GameObject> Enemies = new List<GameObject>();
 
@@ -22,6 +21,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(firerate);
         Cooldown = false;
     }
+    
     public void SpawnBullet()
     {
         if (Cooldown == false)
@@ -93,6 +93,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("space"))
+        {
+            SpawnBullet();
+        }
         Shoot();
         MoveBullets();
         HandleCollision();
