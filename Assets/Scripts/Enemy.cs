@@ -9,9 +9,9 @@ public interface IKillable
 
 public class Enemy : IKillable
 {
-    private int _steps = 5;
-    private int _maxSteps;
-    public int currentStep;
+    public static int _steps = 5;
+    private int _maxSteps = 10;
+    public static int currentStep;
     private int _directionInt = 1;
 
     [SerializeField]
@@ -24,7 +24,6 @@ public class Enemy : IKillable
 
     public void Walk(GameObject enemy)
     {
-        _maxSteps = _steps * 2;
             
         if (currentStep < _steps)
         {
@@ -33,10 +32,14 @@ public class Enemy : IKillable
         else
         {
             enemy.transform.position += new Vector3(0, -_verticalStep, 0);
-            _directionInt *= -1;
-            _steps = _maxSteps;
-            currentStep = 0;
         }
+    }
+
+    public void ReverseDirection()
+    {
+        _directionInt *= -1;
+        _steps = _maxSteps;
+        currentStep = 0;
     }
 
     public void Kill(GameObject obj)

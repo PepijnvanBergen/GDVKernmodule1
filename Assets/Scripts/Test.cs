@@ -47,11 +47,16 @@ public class Test : MonoBehaviour
 
             for (int i = 0; i < enemies.Count; i++)
             {
-                Debug.Log(i);
                 _enemy.Walk(enemies[i]);
             }
 
-            _enemy.currentStep++;
+            Enemy.currentStep++;
+            Debug.Log(Enemy.currentStep + " " + Enemy._steps );
+            if(Enemy.currentStep > Enemy._steps)
+            {
+                Debug.Log("sdasd");
+                _enemy.ReverseDirection();
+            }
         }
     }
 }
