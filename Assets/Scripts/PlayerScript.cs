@@ -26,7 +26,7 @@ public class PlayerScript : IPlayer, IKillable
 
     public void PlayerObject(GameObject _Player, Bullet _MyBullet)
     {
-        _Player = GameObject.Instantiate(_Player, new Vector3(3f, -5f), Quaternion.identity);
+        _Player = GameObject.Instantiate(_Player);
         _PlayerPrefab = _Player;
         _MyB = _MyBullet;
 
@@ -76,10 +76,10 @@ public class PlayerScript : IPlayer, IKillable
         _movePos = new Vector3(_speed, 0f);
 
         _posX = _PlayerPrefab.transform.position.x;
-        _posX = Mathf.Clamp(_posX, -5, 5);
-        //Debug.Log(Mathf.Clamp(_posX, -5, 5));
+        _posX = Mathf.Clamp(_posX, -9, 9);
+
         _vectorPos.x = _posX;
-        _PlayerPrefab.transform.position = new Vector3(_posX, 0);
+        _PlayerPrefab.transform.position = new Vector3(_posX, -4);
 
         //Beweeg als de positie binnen de clamp valt.
         _PlayerPrefab.transform.Translate(_movePos * Time.deltaTime);

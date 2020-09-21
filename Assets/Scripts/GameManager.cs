@@ -11,7 +11,10 @@ public class GameManager : MonoBehaviour
     PlayerScript MyPS = new PlayerScript();
     //PlayerStateMachine MyPFSM;// = new PlayerStateMachine();
     InputManager MyIM = new InputManager();
-    //StateMachine MyFSM = new StateMachine();
+
+    [Header("Enemy")]
+    public GameObject enemy;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -19,7 +22,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        //MyFSM.ChangeState(new MoveState());
+        StateMachine.ChangeState(new SpawnState());
         MyPS.PlayerObject(playerPrefab, MyB);
         //MyPFSM.ChangePlayerState(new PlayerIdleState());
         MyB = new Bullet(enemyPrefab, bulletPrefab, MyPS);
@@ -30,6 +33,6 @@ public class GameManager : MonoBehaviour
     {
         MyIM.InputUpdate();
         MyB.BulletUpdate();
-        //MyPFSM.RunPlayerState();
+        StateMachine.RunState();
     }
 }

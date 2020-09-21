@@ -8,8 +8,6 @@ public class Test : MonoBehaviour
     [SerializeField]
     private GameObject enemy;
 
-    public static List<GameObject> enemies = new List<GameObject>();
-
     [Header("Row Properties")]
     [SerializeField]
     private int _rowAmount;
@@ -28,35 +26,43 @@ public class Test : MonoBehaviour
     [SerializeField]
     private int _nextEnemyPosY;
 
+    float timer = 1;
+    float timeLeft;
+
     SpawnEnemies _spawnEnemies;
     Enemy _enemy;
 
     void Start()
     {
+        enemy = Resources.Load<GameObject>("Prefabs/Invader1");
+
         _spawnEnemies = new SpawnEnemies(enemy, _rowAmount, _enemiesInRow, _rowLocationX, _rowLocationY, _nextRowLocationX, _nextEnemyPosY);
         _enemy = new Enemy();
-
-        StartCoroutine(EnemyWalk());
     }
 
-    private IEnumerator EnemyWalk()
+    private void Update()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f);
+        EnemyWalk();
+    }
 
-            for (int i = 0; i < enemies.Count; i++)
+    private void EnemyWalk()
+    {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            for (int i = 0; i < Bullet.Enemies.Count; i++)
             {
-                _enemy.Walk(enemies[i]);
+                _enemy.Walk(Bullet.Enemies[i]);
             }
 
             Enemy.currentStep++;
-            Debug.Log(Enemy.currentStep + " " + Enemy._steps );
-            if(Enemy.currentStep > Enemy._steps)
+            Debug.Log(Enemy.currentStep + " " + Enemy._steps);
+            if (Enemy.currentStep > Enemy._steps)
             {
-                Debug.Log("sdasd");
                 _enemy.ReverseDirection();
             }
+
+            timeLeft = timer;
         }
     }
 }

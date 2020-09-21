@@ -14,7 +14,7 @@ public class SpawnEnemies
             for (int i = 0; i < enemiesInRow; i++)
             {
                 GameObject go = GameObject.Instantiate(enemy, new Vector3(rowLocationX + _nextPosX, rowLocationY + _nextPosY, 0), Quaternion.identity);
-                Test.enemies.Add(go);
+                Bullet.Enemies.Add(go);
 
                 _nextPosY ++;
             }

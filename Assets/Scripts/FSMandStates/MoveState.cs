@@ -3,19 +3,27 @@
 public class MoveState : IState
 {
     //enemy myenemey = new enemy();
-    StateMachine MyFSM = new StateMachine();
     //PlayerStateMachine MyPFSM = new PlayerStateMachine();
     //Bullet MyB;
+
+    float timer = 1;
+    float timeLeft;
+
+    Enemy _enemy;
+
     public void Enter()
     {
         //MyB = new Bullet();
         //MyPFSM.ChangePlayerState(new PlayerShootState());
-        Debug.Log("entering state");
+
+        _enemy = new Enemy();
+
+        Debug.Log("entering move state");
     }
     public void Execute()
     {
         //myenemy.move();
-        Debug.Log("execute state");
+        Debug.Log("execute move state");
         //MyPFSM.RunPlayerState();
         //MyB.BulletUpdate();
 
@@ -27,9 +35,33 @@ public class MoveState : IState
 
         if pleyer/enemy ded dan naar de volgende state (loseState)
         */
+
+        EnemyWalk();
     }
+
+    private void EnemyWalk()
+    {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            for (int i = 0; i < Bullet.Enemies.Count; i++)
+            {
+                _enemy.Walk(Bullet.Enemies[i]);
+            }
+
+            Enemy.currentStep++;
+            Debug.Log(Enemy.currentStep + " " + Enemy._steps);
+            if (Enemy.currentStep > Enemy._steps)
+            {
+                _enemy.ReverseDirection();
+            }
+
+            timeLeft = timer;
+        }
+    }
+
     public void Exit()
     {
-        Debug.Log("exiting state");
+        Debug.Log("exiting move state");
     }
 }

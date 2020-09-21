@@ -4,7 +4,7 @@ using UnityEngine;
 public class Bullet
 {
     List<GameObject> Bullets = new List<GameObject>();
-    List<GameObject> Enemies = new List<GameObject>();
+    public static List<GameObject> Enemies = new List<GameObject>();
 
     private GameObject _enemyPrefab;
     private GameObject _bulletPrefab;
@@ -23,9 +23,10 @@ public class Bullet
         _Playerjoch = _MyPS._PlayerPrefab;
         _enemyPrefab = _enemy;
         _bulletPrefab = _bullet;
-        GameObject Eenemy = GameObject.Instantiate(_enemyPrefab, new Vector3(0, 4, 0), Quaternion.identity);
-        Enemies.Add(Eenemy);
+        //GameObject Eenemy = GameObject.Instantiate(_enemyPrefab, new Vector3(0, 4, 0), Quaternion.identity);
+        //Enemies.Add(Eenemy);
     }
+
     public void BulletUpdate()
     {
         _PlayerPos = _Playerjoch.transform.position;
