@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     {
         MyPS.PlayerObject(playerPrefab);
         MyB = new Bullet(enemyPrefab, bulletPrefab);
-        MyPFSM.ChangePlayerState(new PlayerMoveState());
+        //MyPFSM.ChangePlayerState(new PlayerMoveState());
     }
 
     // Update is called once per frame

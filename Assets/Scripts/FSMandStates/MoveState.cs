@@ -7,7 +7,7 @@ public class MoveState : IState
     PlayerStateMachine MyPFSM = new PlayerStateMachine();
     public void Enter()
     {
-        MyPFSM.ChangePlayerState(new PlayerMoveState());
+        MyPFSM.ChangePlayerState(new PlayerShootState());
         Debug.Log("entering state");
     }
 
