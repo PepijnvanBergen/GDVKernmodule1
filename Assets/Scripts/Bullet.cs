@@ -6,52 +6,43 @@ public class Bullet
     List<GameObject> Bullets = new List<GameObject>();
     List<GameObject> Enemies = new List<GameObject>();
 
-    private GameObject enemyPrefab;
-    private GameObject bulletPrefab;
+    private GameObject _enemyPrefab;
+    private GameObject _bulletPrefab;
 
-    private Vector3 PlayerPos = new Vector3(0, -4, 0);
+    private Vector3 _PlayerPos;
 
-    public float range;
-    public float firerate;
+    public float range = 0.9f;
+    public float firerate = 0.5f;
 
-    private bool Cooldown = false;
-    IEnumerator FireRateCooldown()
+    private bool _Cooldown = false;
+    GameObject _Playerjoch;
+    //private PlayerScript _MyPS = new PlayerScript();
+
+    public Bullet(GameObject _enemy, GameObject _bullet, PlayerScript _MyPS)
     {
-        yield return new WaitForSeconds(firerate);
-        Cooldown = false;
-    }
-    public Bullet(GameObject enemy, GameObject bullet)
-    {
-        enemyPrefab = enemy;
-        bulletPrefab = bullet;
-        GameObject Eenemy = GameObject.Instantiate(enemyPrefab, new Vector3(0, 4, 0), Quaternion.identity);
+        _Playerjoch = _MyPS._PlayerPrefab;
+        _enemyPrefab = _enemy;
+        _bulletPrefab = _bullet;
+        GameObject Eenemy = GameObject.Instantiate(_enemyPrefab, new Vector3(0, 4, 0), Quaternion.identity);
         Enemies.Add(Eenemy);
     }
     public void BulletUpdate()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            SpawnBullet();
-        }
-        Shoot();
+        _PlayerPos = _Playerjoch.transform.position;
+        //_PlayerPos = _MyPS.
+        //_PlayerPos = PlayerScript.PlayerPos;
+
         MoveBullets();
         HandleCollision();
     }
     public void SpawnBullet()
     {
-        if (Cooldown == false)
+        if (_Cooldown == false)
         {
             //Cooldown = true;
-            GameObject Bbullet = GameObject.Instantiate(bulletPrefab, PlayerPos, Quaternion.identity);
+            GameObject Bbullet = GameObject.Instantiate(_bulletPrefab, _PlayerPos, Quaternion.identity);
             Bullets.Add(Bbullet);
-            //StartCoroutine("FireRateCooldown");
-        }
-    }
-    public void Shoot()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            SpawnBullet();
+
         }
     }
     public void MoveBullets()

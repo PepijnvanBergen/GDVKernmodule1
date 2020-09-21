@@ -8,6 +8,7 @@
         EventManager.SubscribeToEvent(EventEnum.ON_MOVEL, Swap2);
         EventManager.SubscribeToEvent(EventEnum.ON_RUNL, Swap3);
         EventManager.SubscribeToEvent(EventEnum.ON_SHOOT, Swap4);
+        EventManager.SubscribeToEvent(EventEnum.ON_IDLE, Swap5);
     }
     public void Execute()
     {
@@ -29,12 +30,17 @@
     {
         MyPFSM.ChangePlayerState(new PlayerShootState());
     }
+    public void Swap5()
+    {
+        MyPFSM.ChangePlayerState(new PlayerIdleState());
+    }
     public void Exit()
     {
         EventManager.RemoveListener(EventEnum.ON_MOVER, Swap1);
         EventManager.RemoveListener(EventEnum.ON_MOVEL, Swap2);
         EventManager.RemoveListener(EventEnum.ON_RUNL, Swap3);
         EventManager.RemoveListener(EventEnum.ON_SHOOT, Swap4);
+        EventManager.RemoveListener(EventEnum.ON_IDLE, Swap5);
     }
 }
 
@@ -48,6 +54,7 @@ public class PlayerRunLState : IState, IPlayerState
         EventManager.SubscribeToEvent(EventEnum.ON_MOVEL, Swap2);
         EventManager.SubscribeToEvent(EventEnum.ON_RUNR, Swap3);
         EventManager.SubscribeToEvent(EventEnum.ON_SHOOT, Swap4);
+        EventManager.SubscribeToEvent(EventEnum.ON_IDLE, Swap5);
     }
     public void Execute()
     {
@@ -68,6 +75,10 @@ public class PlayerRunLState : IState, IPlayerState
     public void Swap4()
     {
         MyPFSM.ChangePlayerState(new PlayerShootState());
+    }
+    public void Swap5()
+    {
+        MyPFSM.ChangePlayerState(new PlayerIdleState());
     }
     public void Exit()
     {

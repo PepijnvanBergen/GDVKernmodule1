@@ -4,6 +4,7 @@
     void Swap2();
     void Swap3();
     void Swap4();
+    void Swap5();
 }
 public class PlayerStateMachine
 {

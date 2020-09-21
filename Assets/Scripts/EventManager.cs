@@ -9,8 +9,9 @@ public enum EventEnum
     ON_MOVER = 2,
     ON_MOVEL = 3,
     ON_SHOOT = 4,
-    ON_ALL_ENEMY_DEATH = 5,
-    ON_PLAYER_DEATH = 6,
+    ON_IDLE = 5,
+    ON_EPDEAD = 6,
+    ON_SPAWN_COMPLETE = 7
 }
 
 public static class EventManager
@@ -24,14 +25,14 @@ public static class EventManager
             eventDictionary.Add(eventType, null);
         }
         eventDictionary[eventType] += function;
-        Debug.Log("EventSubscribed");
+        //Debug.Log("EventSubscribed");
     }
     public static void RemoveListener(EventEnum eventType, System.Action function)
     {
         if (eventDictionary.ContainsKey(eventType) && eventDictionary[eventType] != null)
         {
             eventDictionary[eventType] -= function;
-            Debug.Log("EventRemoved");
+            //Debug.Log("EventRemoved");
         }
     }
     public static void RaiseEvent(EventEnum eventType)
@@ -39,7 +40,7 @@ public static class EventManager
         if (eventDictionary.ContainsKey(eventType) && eventDictionary[eventType] != null)
         {
             eventDictionary[eventType].Invoke();
-            Debug.Log("EventRaised");
+            //Debug.Log("EventRaised");
         }
     }
 }
