@@ -5,10 +5,11 @@ using UnityEngine;
 public enum EventEnum
 {
     ON_RUN = 0,
-    ON_MOVE = 1,
-    ON_SHOOT = 2,
-    ON_ALL_ENEMY_DEATH = 3,
-    ON_PLAYER_DEATH = 4,
+    ON_MOVER = 1,
+    ON_MOVEL = 2,
+    ON_SHOOT = 3,
+    ON_ALL_ENEMY_DEATH = 4,
+    ON_PLAYER_DEATH = 5,
 }
 
 public static class EventManager
