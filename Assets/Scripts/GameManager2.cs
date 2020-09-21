@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class GameManager2 : MonoBehaviour
 {
-    public GameObject PlayerPrefab;
+    
 }

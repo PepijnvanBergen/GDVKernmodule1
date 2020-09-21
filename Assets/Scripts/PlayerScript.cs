@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public interface IPlayer
@@ -11,56 +10,56 @@ public interface IPlayer
 
 public class PlayerScript : IPlayer, IKillable
 {
-    GameManager2 GM2 = new GameManager2();
     InputManager MyIM = new InputManager();
     //Maximale afstand links = '-5' maximale afstand rechts = '5.'
     //Als de camera een grote heeft van '4.405995'
 
     private float _currentPosX;
 
-    [SerializeField]
     private float _maxPosRight;
-    [SerializeField]
     private float _maxPosLeft;
-    [SerializeField]
-    private float _moveSpeed;
-    [SerializeField]
-    private float _runSpeed;
+    private float _speed;
 
     private Vector3 _movePosR;
     private Vector3 _movePosL;
 
-    public GameObject Player;
-
-    public PlayerScript()
+    private GameObject _PlayerPrefab;
+    public void PlayerObject(GameObject _Player)
     {
-        GameObject Player = GameObject.Instantiate(GM2.PlayerPrefab, new Vector3(1f, 1f), Quaternion.identity);
+        _Player = GameObject.Instantiate(_Player, new Vector3(1f, 1f), Quaternion.identity);
+        _PlayerPrefab = _Player;
     }
     public void Move()
     {
-        Calculate(_moveSpeed);
+        _speed = 1f;
     }
     public void Run()
     {
-        Calculate(_runSpeed);
+        _speed = 1.5f;
     }
-    public void Calculate(float speed)
+
+    public void SpeedReverse()
+    {
+        _speed *= -1f;
+    }
+
+    public void Calculate()
     {
         
-        _currentPosX = Player.transform.position.x;
+        _currentPosX = _PlayerPrefab.transform.position.x;
 
-        _movePosR = new Vector3(speed, 0f);
-        _movePosL = new Vector3(-speed, 0f);
+        _movePosR = new Vector3(_speed, 0f);
+        _movePosL = new Vector3(-_speed, 0f);
 
         //Beweeg naar rechts als de positie binnen de clamp valt.
         if (MyIM.moveInput.x > 0 && (_currentPosX < _maxPosRight))
         {
-            Player.transform.Translate(_movePosR * Time.deltaTime);
+            _PlayerPrefab.transform.Translate(_movePosR * Time.deltaTime);
         }
         //Beweeg naar links als de positie binnen de clamp valt.
         if (MyIM.moveInput.x < 0 && (Mathf.Clamp(_currentPosX, _maxPosLeft, _maxPosRight) > _maxPosLeft))
         {
-            Player.transform.Translate(_movePosL * Time.deltaTime);
+            _PlayerPrefab.transform.Translate(_movePosL * Time.deltaTime);
         }
     }
     public void Shoot()
@@ -69,6 +68,6 @@ public class PlayerScript : IPlayer, IKillable
     }
     public void Kill(GameObject obj)
     {
-        //Die
+        GameObject.Destroy(_PlayerPrefab);
     }
 }
