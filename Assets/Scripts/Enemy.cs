@@ -9,8 +9,8 @@ public interface IKillable
 
 public class Enemy : IKillable
 {
-    public static int _steps = 5;
-    private int _maxSteps = 10;
+    public static int _steps = 4;
+    private int _maxSteps = 8;
     public static int currentStep;
     private int _directionInt = 1;
 
@@ -18,9 +18,6 @@ public class Enemy : IKillable
     private float _horizontalStep = 1;
     [SerializeField]
     private float _verticalStep = 1;
-
-    private float _timer = 1f;
-    private float _nextTime;
 
     public void Walk(GameObject enemy)
     {

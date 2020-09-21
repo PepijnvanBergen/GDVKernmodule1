@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject bulletPrefab;
     public GameObject playerPrefab;
-    Bullet MyB;
+    private Bullet MyB;
     PlayerScript MyPS = new PlayerScript();
     //PlayerStateMachine MyPFSM;// = new PlayerStateMachine();
     InputManager MyIM = new InputManager();
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StateMachine.ChangeState(new SpawnState());
-        MyPS.PlayerObject(playerPrefab, MyB);
+
         //MyPFSM.ChangePlayerState(new PlayerIdleState());
         MyB = new Bullet(enemyPrefab, bulletPrefab, MyPS);
         EventManager.SubscribeToEvent(EventEnum.ON_SHOOT, MyB.SpawnBullet);
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         MyIM.InputUpdate();
-        MyB.BulletUpdate();
         StateMachine.RunState();
+        MyB.BulletUpdate();
     }
 }

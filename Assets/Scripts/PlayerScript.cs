@@ -19,16 +19,15 @@ public class PlayerScript : IPlayer, IKillable
     private float _maxPosLeft = -5f;
 
     private Vector3 _movePos;
+    public static Vector3 playerPos;
 
     public GameObject _PlayerPrefab;
     //public Vector3 PlayerPos = new Vector3(3,0,0);
-    private Bullet _MyB;
 
-    public void PlayerObject(GameObject _Player, Bullet _MyBullet)
+    public void PlayerObject(GameObject _player)
     {
-        _Player = GameObject.Instantiate(_Player);
-        _PlayerPrefab = _Player;
-        _MyB = _MyBullet;
+        _player = GameObject.Instantiate(_player);
+        _PlayerPrefab = _player;
 
 
         EventManager.SubscribeToEvent(EventEnum.ON_IDLE, Idle);
@@ -84,7 +83,7 @@ public class PlayerScript : IPlayer, IKillable
         //Beweeg als de positie binnen de clamp valt.
         _PlayerPrefab.transform.Translate(_movePos * Time.deltaTime);
 
-
+        playerPos = _PlayerPrefab.transform.position;
     }
     public void Kill(GameObject obj)
     {

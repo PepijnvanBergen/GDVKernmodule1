@@ -50,7 +50,6 @@ public class MoveState : IState
             }
 
             Enemy.currentStep++;
-            Debug.Log(Enemy.currentStep + " " + Enemy._steps);
             if (Enemy.currentStep > Enemy._steps)
             {
                 _enemy.ReverseDirection();
